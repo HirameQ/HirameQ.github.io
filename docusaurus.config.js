@@ -7,7 +7,6 @@ module.exports = {
    favicon: 'img/favicon.ico',
   organizationName: 'wamisnet', // Usually your GitHub org/user name.
   projectName: 'wamisnet.github.io', // Usually your repo name.
-  plugins: ['@docusaurus/plugin-google-analytics'],
   themeConfig: {
     googleAnalytics: {
       trackingID: 'G-W6MG748R1H',
