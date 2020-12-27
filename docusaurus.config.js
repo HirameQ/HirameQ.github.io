@@ -7,8 +7,13 @@ module.exports = {
    favicon: 'img/favicon.ico',
   organizationName: 'wamisnet', // Usually your GitHub org/user name.
   projectName: 'wamisnet.github.io', // Usually your repo name.
-
+  plugins: ['@docusaurus/plugin-google-analytics'],
   themeConfig: {
+    googleAnalytics: {
+      trackingID: 'G-W6MG748R1H',
+      // Optional fields.
+      anonymizeIP: true, // Should IPs be anonymized?
+    },
     image:"img/hirameq_logo.jpg",
     navbar: {
       title: '',
