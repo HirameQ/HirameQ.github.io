@@ -8,7 +8,7 @@ module.exports = {
   organizationName: 'wamisnet', // Usually your GitHub org/user name.
   projectName: 'wamisnet.github.io', // Usually your repo name.
   themeConfig: {
-    googleAnalytics: {
+    gtag: {
       trackingID: 'G-W6MG748R1H',
       // Optional fields.
       anonymizeIP: true, // Should IPs be anonymized?
