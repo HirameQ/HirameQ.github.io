@@ -8,7 +8,7 @@ sidebar_label: FullPageOS
 
 FullPageOSというフルスクリーンでChromiumを自動起動してくれる便利なRaspberry Pi専用のOSです。
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/NMhoc9sRcNc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/NMhoc9sRcNc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 https://youtu.be/NMhoc9sRcNc
 
