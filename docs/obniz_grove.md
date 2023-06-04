@@ -17,6 +17,7 @@ obnizは株式会社obnizが開発したIoTを第一に考えられて作られ�
 
 ![](/img/docs/obniz_grove/sample.jpg)
 
+サイズ: 45.5 × 23.3 × 12.0
 
 ## 特徴
 
