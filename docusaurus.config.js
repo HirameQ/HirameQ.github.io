@@ -6,7 +6,7 @@ module.exports = {
   onBrokenLinks: 'throw',
    favicon: 'img/favicon.ico',
   organizationName: 'wamisnet', // Usually your GitHub org/user name.
-  projectName: 'wamisnet.github.io', // Usually your repo name.
+  projectName: 'hirameq.jp', // Usually your repo name.
   themeConfig: {
     gtag: {
       trackingID: 'G-W6MG748R1H',
@@ -30,7 +30,7 @@ module.exports = {
         },
         {to: 'contact', label: 'Contact', position: 'left'},
         {
-          href: 'https://github.com/wamisnet',
+          href: 'https://github.com/hirameq',
           label: 'GitHub',
           position: 'right',
         },

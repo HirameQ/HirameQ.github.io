@@ -42,5 +42,6 @@ LINE BOTでMORIoTのデバイスを管理でき、チャットのやり取りで
 
 ## Link集
 
+- [公式サイト](https://moriot.hirameq.jp/)
 - [MORIoTプロジェクトをリリース！　MORI（森）×IoT で地域問題解決を目指す](https://www.jindai.ac.jp/department/human/communication/topics/004102.html)
 - [高音でシカ撃退する機器、操作はスマホで自宅から　福井県の水仙畑で実験、農家の期待集める](https://www.fukuishimbun.co.jp/articles/-/1383031)
