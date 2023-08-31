@@ -98,7 +98,7 @@ AT+CESQ
 - [ATコマンド](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fref_at_commands%2FREF%2Fat_commands%2Fintro.html)
 - [ATコマンド](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/applications/serial_lte_modem/README.html#nrf9160-serial-lte-modem)
 - [アンテナリスト](https://www.nordicsemi.com/Products/Low-power-cellular-IoT/nRF9160-Revision-1-global-and-regulatory-certifications)
-
+- [MNO Certifications](https://www.nordicsemi.com/Products/Low-power-cellular-IoT/nRF9160-Certifications/Mobile-network-operator)
 使用できるアンテナは上のリストになります。
 用途や状況により適切なアンテナは異なりますが、「SRFC015-100」が安価でよいかもしれません。
 
