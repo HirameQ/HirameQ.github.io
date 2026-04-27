@@ -1,196 +1,217 @@
 import React from 'react';
-import clsx from 'clsx';
-import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import styles from './styles.module.css';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import {HQ, HQPage} from '../components/HQShell';
 
-const hardware_features = [
-    {
-        title: <>Nefryシリーズ</>,
-        imageUrl: 'img/main/nefry.png',
-        description: (
-            <>
-                dotstudio株式会社さんと共同で開発したIoT開発ボードです。<br/>
-                「ネットに簡単につながる」ことを実現するために2015年から基板からファームウェア、デバイス設定用Webサイトなど一括して開発しました。<br/>
-                無線LANに接続して、ネットワークにある様々なサービスとデバイスのセンサーなどを簡単なプログラムを書くだけで接続できます。<br/>
-                試作から製造、販売まで行い、これまでに累計数千台ほど販売させていただきました。
-            </>
-        ),
-        link: "docs/nefry/",
-    },
-    {
-        title: <>CocoaBit</>,
-        imageUrl: 'img/main/cocoabit.png',
-        description: (
-            <>
-                ワンフットシーバスさんの試作から専用基板を作成し、NefryをベースにしたlittleBits専用IoT開発ボードです。<br/>
-                littleBitsというマグネット式の各モジュールをつなぎ合わせることで、電子回路を楽しく学べるものでIoTを学べます。<br/>
-                デジタルハイクさんから部材の支援をいただきました。<br/>
-                基板の設計、ファームウエアの開発、少量量産を行いました。<br/>
-            </>
-        ),
-        link: "docs/cocoabit/",
-    },
-    {
-        title: <>モンスターウルフ拡張基板</>,
-        imageUrl: 'img/main/monster_wolf.png',
-        description: (
-            <>
-                株式会社exMediaさんと仁愛大学の安彦先生による共同研究で使用するモンスターウルフの機能を拡張する基板作成しました。<br/>
-                害獣に対するセンシングや警告音声を再生する機能を搭載し、モンスターウルフの効果範囲を拡張します。<br/>
-                xbeeを用いメッシュネットワークを構成し、山間部でも通信が確立できるようにしています。<br/>
-                基板の設計、ファームウェアの開発、少量量産を行いました。<br/>
-            </>
-        ),
-        link: "docs/monster_wolf/",
-    },
-    // {
-    //     title: <>CountIT</>,
-    //     description: (
-    //         <>
-    //             ピノベーション株式会社さんの金型管理システムを作成しました。<br/>
-    //             ElasticSearchを用い、金型の管理情報を一括で管理、可視化を行っています。<br/>
-    //             ハードウエアから可視化する仕組みまですべて一括して実装しました。
-    //         </>
-    //     ),
-    //     link: "docs/countit/",
-    // },
+const services = [
+  { no: '01', t: 'ハードウェア', s: 'IoT機器・遠隔制御・規格対応', d: 'センサーで現場のデータを取得し、無線でクラウドへつなぐ装置や、ビル・住宅全体の電力使用を最適化する制御システムまで。', tags: ['IoTデバイス', '遠隔制御', 'KNX/DALI', 'ECHONET Lite', 'OCPP'] },
+  { no: '02', t: 'モバイルアプリ', s: '業務用端末から一般向けまで', d: 'ハンディターミナル・決済端末・医療機器など現場で使う業務アプリから、BLE機器と連携する一般ユーザー向けアプリまで対応します。', tags: ['ハンディターミナル', 'キーエンス', '決済端末', '医療現場', 'Android'] },
+  { no: '03', t: 'Webアプリケーション', s: '管理画面・業務改善・可視化', d: 'IoT機器の管理サイト、紙やExcelからの業務改善、データ可視化ダッシュボード、既存システムとのAPI連携まで。', tags: ['管理画面', '業務システム', '可視化', 'API連携', '新規サービス'] },
 ];
 
-const software_features = [
-    {
-        title: <>入室管理システム</>,
-        description: (
-            <>
-                Suicaや指紋認証を使用した入室管理システムです。<br/>
-                対象ユーザーに権限がある場合、外付けしたスマートロックを制御し、カギの制御を行います。<br/>
-                入室データは即時にSlackに投稿されるほかネットワークに保存されており、あとからどのような動作があったか検証確認できます。
-            </>
-        ),
-        link: "docs/door/",
-    },
-    {
-        title: <>在庫管理システム</>,
-        description: (
-            <>
-                バーコードリーダーを用い、商品の入出荷時にバーコードを読み取ることでデータの管理を行うシステムです。<br/>
-                ブラウザ上で動作するため、WindowsやAndroidといったデバイスに固定されることなく稼働させられるようになっています。<br/>
-                実績データはすべてネットワークに保存されており、その実績をグラフ化して確認できます。
-            </>
-        ),
-        link: "docs/barcode/",
-    },
+const works = [
+  { c: '#DCE7F5', cat: 'IoT / HW', t: 'IoT開発ボード Nefry', d: 'dotstudio社と共同開発。基板〜量産販売まで一括対応、累計数千台。', meta: '販売実績 数千台', img: '/img/main/nefry.png' },
+  { c: '#E5DEF5', cat: '研究 / HW', t: 'モンスターウルフ拡張基板', d: '大学との共同研究。xbeeメッシュで山間部通信を実現。基板とファームウェアを開発。', meta: '共同研究', img: '/img/main/monster_wolf.png' },
+  { c: '#DFE9DA', cat: '教育 / HW', t: 'CocoaBit', d: 'ワンフットシーバスと共同。littleBits対応のIoT開発ボード。基板〜少量量産。', meta: '受託開発', img: '/img/main/cocoabit.png' },
 ];
 
-const other_features = [
-    {
-        title: <>執筆活動</>,
-        imageUrl:"img/main/book.png",
-        description: (
-            <>
-                Nefryの説明本やFlutterの入門本を出版しました。
-            </>
-        ),
-    },
-    {
-        title: <>イベント開催</>,
-        description: (
-            <>
-                IoTLT名古屋や同人ハードウエア meetupの開催をしています。
-            </>
-        ),
-        imageUrl:"img/main/event.jpg",
-        link: "https://connpass.com/user/wamisnet/open/",
-    },
+const reasons = [
+  { n: '01', t: '“最後の1mm”まで届く', d: '基板からアプリのUIまで、同じチームが責任を持って整えます。', kpi: 'HW + Firmware + Mobile + Web' },
+  { n: '02', t: '0→1から、1→10まで', d: '新規事業の立ち上げや実現性調査が得意分野です。小さく試して、量産化・運用フェーズまで伴走します。', kpi: '実績例：建設現場IoT、医療用IoT' },
+  { n: '03', t: 'クライアントと一緒に考える', d: '仕様書がなくても大丈夫。「こんなことができないか」という漠然としたアイデアから、一緒に具体化していきます。', kpi: '要件整理から伴走 / 仕様書なしOK' },
 ];
 
-function Feature({imageUrl, title, description, link}) {
-    const imgUrl = useBaseUrl(imageUrl);
-    return (
-        <div className={clsx('row', styles.features)}>
-            {imgUrl && (
-                <div className="text--center">
-                    <div className={styles.featureImageBox}>
-                        <img className={styles.featureImage} src={imgUrl} alt={title}/>
-                    </div>
-                </div>
-            )}
-            <div className={clsx('col', styles.feature)}>
-                <h3>{title}</h3>
-                <p>{description}</p>
-                {link && (
-                    <Link
-                        className={clsx(
-                            'button button--outline button--secondary'
-                        )}
-                        to={useBaseUrl(link)}>
-                        詳細はこちら
-                    </Link>
-                )}
-            </div>
+const steps = [
+  { n: '01', t: '相談', d: 'メール or フォームから', dur: '無料・30分〜' },
+  { n: '02', t: '要件整理', d: '予算感を早めに教えていただければ、それに合わせた提案をします', dur: '1〜2週' },
+  { n: '03', t: '見積・契約', d: 'フェーズ分割で着手しやすく', dur: '〜1週' },
+  { n: '04', t: '開発・試作', d: '進捗共有しながら試作を進行', dur: '1〜6ヶ月' },
+  { n: '05', t: '納品・運用', d: '量産・保守・改善まで', dur: '継続' },
+];
+
+function WorkCard({w}) {
+  const imgUrl = useBaseUrl(w.img);
+  return (
+    <Link to="/works/" className="hq-card" style={{ overflow: 'hidden', cursor: 'pointer', display: 'block', textDecoration: 'none', color: 'inherit' }}>
+      <div style={{ aspectRatio: '4 / 3', background: w.c, position: 'relative', overflow: 'hidden', padding: 28 }}>
+        <img src={imgUrl} alt={w.t} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}/>
+      </div>
+      <div style={{ padding: '22px 24px 26px' }}>
+        <div style={{ fontSize: 11, color: HQ.blue, letterSpacing: 1.5, fontWeight: 600 }}>{w.cat}</div>
+        <div style={{ fontSize: 18, fontWeight: 700, marginTop: 6 }}>{w.t}</div>
+        <p style={{ fontSize: 13, color: HQ.sub, lineHeight: 1.85, marginTop: 10, marginBottom: 14 }}>{w.d}</p>
+        <div style={{ fontSize: 11, color: HQ.sub, fontFamily: 'ui-monospace, monospace', borderTop: `1px solid ${HQ.line}`, paddingTop: 12 }}>{w.meta}</div>
+      </div>
+    </Link>
+  );
+}
+
+export default function Home() {
+  const {siteConfig = {}} = useDocusaurusContext();
+  return (
+    <HQPage current="home">
+      <Head>
+        <title>{siteConfig.title}</title>
+        <meta name="description" content={siteConfig.tagline}/>
+      </Head>
+
+      {/* HERO */}
+      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '88px 40px 72px', display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 64, alignItems: 'center' }}>
+        <div className="hq-fade">
+          <div className="hq-eyebrow">HARDWARE × MOBILE × WEB</div>
+          <h1 className="hq-h1" style={{ marginTop: 24, fontSize: 52 }}>
+            アイデアを、<br />
+            <span style={{ color: HQ.blue }}>素早く・質良く</span>、<br />
+            実装まで。
+          </h1>
+          <p style={{ fontSize: 16, lineHeight: 2, color: HQ.sub, marginTop: 28, maxWidth: 540 }}>
+            電子基板の設計から、ファームウェア、モバイルアプリ、Webまで。<br/>
+            一括して開発できる体制で、皆さまのIoTプロダクトや業務改善を、構想から運用まで伴走します。
+          </p>
+          <div style={{ display: 'flex', gap: 12, marginTop: 36 }}>
+            <Link to="/contact/" className="hq-cta" style={{ padding: '14px 28px', textDecoration: 'none', color: '#fff', display: 'inline-block' }}>無料で相談する →</Link>
+            <Link to="/works/" className="hq-ghost" style={{ padding: '14px 24px', textDecoration: 'none', display: 'inline-block' }}>実績を見る</Link>
+          </div>
+          <p style={{ fontSize: 12, color: HQ.sub, marginTop: 18 }}>
+            アイデア段階のご相談歓迎 ／ NDA対応可 ／ <b style={{ color: HQ.ink, fontWeight: 600 }}>当社で難しい場合は他社のご紹介も可能です</b>
+          </p>
         </div>
-    );
-}
 
-function Home() {
-    const context = useDocusaurusContext();
-    const {siteConfig = {}} = context;
-    return (
-        <Layout
-            title={`${siteConfig.title}へようこそ`}
-            description="ハードウエア、モバイルアプリ、Webを一括開発できるメリット生かし、お客様のさまざまなアイデアの実装をお手伝いします">
-            <header className={clsx('hero hero--primary', styles.heroBanner)}>
-                <div className="container">
-                    <h1 className="hero__title">{siteConfig.title}</h1>
-                    <p className="hero__subtitle">{siteConfig.tagline}</p>
-                    <div className={styles.buttons}>
-                        <Link
-                            className={clsx(
-                                'button button--outline button--secondary button--lg',
-                                styles.getStarted,
-                            )}
-                            to={useBaseUrl('about/')}>
-                            About
-                        </Link>
-                    </div>
-                </div>
-            </header>
-            <main>
-                {hardware_features && hardware_features.length > 0 && (
-                    <section className={styles.features}>
-                        <div className="container">
-                            <h2　className={styles.titles}>ハードウエア・ファームウェアの開発</h2>
-                            {hardware_features.map((props, idx) => (
-                                <Feature key={idx} {...props} />
-                            ))}
-                        </div>
-                    </section>
-                )}
-                {software_features && software_features.length > 0 && (
-                    <section className={styles.features}>
-                        <div className="container">
-                            <h2　className={styles.titles}>ソフトウエアの開発</h2>
-                            {software_features.map((props, idx) => (
-                                <Feature key={idx} {...props} />
-                            ))}
-                        </div>
-                    </section>
-                )}
-                {other_features && other_features.length > 0 && (
-                    <section className={styles.features}>
-                        <div className="container">
-                            <h2　className={styles.titles}>その他</h2>
-                            {other_features.map((props, idx) => (
-                                <Feature key={idx} {...props} />
-                            ))}
-                        </div>
-                    </section>
-                )}
-            </main>
-        </Layout>
-    );
-}
+        <div style={{ position: 'relative', height: 460 }}>
+          <svg viewBox="0 0 480 460" style={{ width: '100%', height: '100%' }}>
+            <defs>
+              <linearGradient id="hq-hero-g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stopColor={HQ.blue} stopOpacity="0.12"/>
+                <stop offset="1" stopColor={HQ.blue} stopOpacity="0"/>
+              </linearGradient>
+              <pattern id="hq-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                <path d="M24 0 L0 0 0 24" stroke={HQ.line} strokeWidth="1" fill="none"/>
+              </pattern>
+            </defs>
+            <rect width="480" height="460" fill="url(#hq-grid)"/>
+            <circle cx="240" cy="230" r="180" fill="url(#hq-hero-g)"/>
+            {[[120, 140], [360, 140], [240, 230], [120, 320], [360, 320], [240, 80], [240, 380]].map(([x,y], i) => (
+              <g key={i}>
+                <circle cx={x} cy={y} r="6" fill={HQ.blue}/>
+                <circle cx={x} cy={y} r="14" fill="none" stroke={HQ.blue} strokeWidth="1" opacity="0.3"/>
+              </g>
+            ))}
+            <path d="M 240 80 L 240 230 L 120 140 M 240 230 L 360 140 M 240 230 L 120 320 M 240 230 L 360 320 M 240 230 L 240 380" stroke={HQ.blue} strokeWidth="1.5" fill="none" opacity="0.5"/>
+            <text x="240" y="234" textAnchor="middle" fill="#fff" fontSize="9" fontFamily="ui-monospace, monospace" fontWeight="700">Q</text>
+          </svg>
+          <div style={{ position: 'absolute', bottom: 16, right: 0, fontSize: 10, color: HQ.sub, letterSpacing: 2, fontFamily: 'ui-monospace, monospace' }}>FIG. 01 / SYSTEM</div>
+        </div>
+      </section>
 
-export default Home;
+      {/* 信頼指標 */}
+      <section style={{ borderTop: `1px solid ${HQ.line}`, borderBottom: `1px solid ${HQ.line}`, background: HQ.bgAlt }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', padding: '28px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32 }}>
+          <span style={{ fontSize: 12, color: HQ.sub, letterSpacing: 1, whiteSpace: 'nowrap' }}>これまでに支援してきた業界</span>
+          <div style={{ display: 'flex', gap: 28, fontSize: 13, color: HQ.subLight, fontWeight: 500, flexWrap: 'wrap' }}>
+            <span>製造業</span><span>医療</span><span>建設</span><span>農業・獣害対策</span><span>教育・研究</span><span>太陽光・エネルギー</span><span>小売・POS</span><span>物流・在庫</span>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '96px 40px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56, gap: 32 }}>
+          <div>
+            <div className="hq-eyebrow">SERVICES — 01</div>
+            <h2 className="hq-h2" style={{ marginTop: 14 }}>3つの領域を、ひとつのチームで。</h2>
+          </div>
+          <p style={{ fontSize: 14, color: HQ.sub, lineHeight: 1.95, maxWidth: 380, margin: 0 }}>
+            複数のベンダーに分かれがちな領域を一括で受託。<br/>
+            仕様の橋渡しコストを最小化し、量産・運用までのリードタイムを短縮します。
+          </p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+          {services.map(s => (
+            <Link to="/services/" key={s.no} className="hq-card" style={{ padding: 32, cursor: 'pointer', display: 'block', textDecoration: 'none', color: 'inherit' }}>
+              <div style={{ fontSize: 11, color: HQ.blue, fontWeight: 700, letterSpacing: 2, fontFamily: 'ui-monospace, monospace' }}>{s.no}</div>
+              <div className="hq-h3" style={{ marginTop: 14, fontSize: 21 }}>{s.t}</div>
+              <div style={{ fontSize: 12, color: HQ.blue, marginTop: 4 }}>{s.s}</div>
+              <p style={{ fontSize: 13, color: HQ.sub, lineHeight: 1.95, marginTop: 18 }}>{s.d}</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 24 }}>
+                {s.tags.map(t => <span key={t} className="hq-tag">{t}</span>)}
+              </div>
+              <div style={{ marginTop: 22, fontSize: 12, color: HQ.blue, fontWeight: 600 }}>領域の詳細を見る →</div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* WORKS preview */}
+      <section style={{ background: HQ.bgAlt, borderTop: `1px solid ${HQ.line}`, borderBottom: `1px solid ${HQ.line}` }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', padding: '96px 40px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48, gap: 32 }}>
+            <div>
+              <div className="hq-eyebrow">WORKS — 02</div>
+              <h2 className="hq-h2" style={{ marginTop: 14 }}>これまでの実績、抜粋。</h2>
+            </div>
+            <Link to="/works/" style={{ fontSize: 14, color: HQ.blue, fontWeight: 600, cursor: 'pointer' }}>すべての実績を見る →</Link>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+            {works.map(w => <WorkCard key={w.t} w={w}/>)}
+          </div>
+
+          <div style={{ marginTop: 36, padding: '20px 28px', background: '#fff', border: `1px dashed ${HQ.blue}66`, borderRadius: 8, display: 'flex', alignItems: 'center', gap: 18 }}>
+            <div style={{ width: 36, height: 36, background: HQ.blueLight, borderRadius: 999, display: 'grid', placeItems: 'center', color: HQ.blue, fontWeight: 700, fontFamily: 'ui-monospace, monospace', flexShrink: 0 }}>i</div>
+            <div style={{ fontSize: 13, color: HQ.sub, lineHeight: 1.85 }}>
+              <b style={{ color: HQ.ink, fontWeight: 600 }}>守秘義務によりサイトに掲載していない案件も多数あります。</b> 業界・規模・技術スタックの近い事例があるかは、お気軽にお問い合わせください。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHY */}
+      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '96px 40px' }}>
+        <div style={{ marginBottom: 56 }}>
+          <div className="hq-eyebrow">WHY HIRAMEQ — 03</div>
+          <h2 className="hq-h2" style={{ marginTop: 14 }}>選ばれる、3つの理由。</h2>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          {reasons.map(c => (
+            <div key={c.n} style={{ borderTop: `2px solid ${HQ.blue}`, paddingTop: 22 }}>
+              <div style={{ fontSize: 11, color: HQ.blue, fontWeight: 700, letterSpacing: 2, fontFamily: 'ui-monospace, monospace' }}>POINT {c.n}</div>
+              <div className="hq-h3" style={{ marginTop: 12, fontSize: 22 }}>{c.t}</div>
+              <p style={{ fontSize: 14, color: HQ.sub, lineHeight: 2, marginTop: 14 }}>{c.d}</p>
+              <div style={{ fontSize: 11, color: HQ.sub, fontFamily: 'ui-monospace, monospace', marginTop: 18, paddingTop: 14, borderTop: `1px dashed ${HQ.line}` }}>{c.kpi}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* PROCESS preview */}
+      <section style={{ background: HQ.blueDark, color: '#fff' }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', padding: '96px 40px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56, gap: 32 }}>
+            <div>
+              <div className="hq-eyebrow" style={{ color: '#9DB8DA' }}>PROCESS — 04</div>
+              <h2 className="hq-h2" style={{ marginTop: 14, color: '#fff' }}>発注の流れ。</h2>
+              <p style={{ fontSize: 14, color: '#B7C7DD', marginTop: 14, lineHeight: 1.95, maxWidth: 540 }}>
+                ふわっとしたアイデアからのご相談で大丈夫です。<b style={{ color: '#fff', fontWeight: 600 }}>当社で対応が難しい案件は、信頼できる他社をご紹介することも可能</b>。気軽な雑談からどうぞ。
+              </p>
+            </div>
+            <Link to="/process/" style={{ fontSize: 14, color: '#fff', fontWeight: 600, cursor: 'pointer' }}>詳しい流れを見る →</Link>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 0, position: 'relative' }}>
+            <div style={{ position: 'absolute', top: 22, left: '10%', right: '10%', height: 1, background: 'rgba(255,255,255,0.18)', zIndex: 0 }}/>
+            {steps.map(p => (
+              <div key={p.n} style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+                <div style={{ width: 44, height: 44, background: HQ.blueDark, border: `2px solid #fff`, borderRadius: 999, margin: '0 auto', display: 'grid', placeItems: 'center', fontSize: 13, fontWeight: 700, color: '#fff', fontFamily: 'ui-monospace, monospace' }}>{p.n}</div>
+                <div style={{ fontSize: 16, fontWeight: 700, marginTop: 18, color: '#fff' }}>{p.t}</div>
+                <div style={{ fontSize: 12, color: '#B7C7DD', marginTop: 6, lineHeight: 1.7, padding: '0 12px' }}>{p.d}</div>
+                <div style={{ fontSize: 11, color: '#9DB8DA', marginTop: 10, fontFamily: 'ui-monospace, monospace' }}>{p.dur}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </HQPage>
+  );
+}

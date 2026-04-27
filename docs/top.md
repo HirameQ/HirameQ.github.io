@@ -1,5 +1,6 @@
 ---
 id: top
+slug: /
 title: 概要
 sidebar_label: 概要
 ---
