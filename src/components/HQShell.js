@@ -46,6 +46,20 @@ export const HQStyles = () => (
     .hq-root .hq-h3 { font-size: 20px; line-height: 1.5; font-weight: 700; margin: 0; }
     .hq-root .hq-mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
     .hq-root .hq-divider { height: 1px; background: ${HQ.line}; }
+    .hq-root .hq-wrap { max-width: 1180px; margin: 0 auto; padding-left: 40px; padding-right: 40px; }
+    .hq-root .hq-g2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .hq-root .hq-g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .hq-root .hq-table { display: table; width: 100%; margin: 0; border-collapse: collapse; font-size: 13px; }
+    .hq-root .hq-table tr { background: transparent; border: 0; }
+    .hq-root .hq-table th, .hq-root .hq-table td { border: 0; border-top: 1px solid ${HQ.line}; }
+    .hq-root .hq-table thead th { border-top: 0; background: ${HQ.blueLight}; color: ${HQ.blueDark}; }
+    .hq-root .hq-video { width: 100%; aspect-ratio: 16 / 9; display: block; background: #0E1726; border-radius: 6px; }
+    @media (max-width: 860px) {
+      .hq-root .hq-wrap { padding-left: 16px; padding-right: 16px; }
+      .hq-root .hq-g2, .hq-root .hq-g3 { grid-template-columns: 1fr; }
+      .hq-root .hq-h1 { font-size: 32px; }
+      .hq-root .hq-h2 { font-size: 26px; }
+    }
   `}</style>
 );
 
@@ -55,6 +69,7 @@ const NAV_ITEMS = [
   { id: 'process', t: '進め方', to: '/process/' },
   { id: 'about', t: '会社情報', to: '/about/' },
   { id: 'docs', t: '作品・事例', to: '/docs/' },
+  { id: 'resources', t: '資料', to: '/resources/' },
 ];
 
 export const HQHeader = ({ current = 'home' }) => {
@@ -83,7 +98,7 @@ export const HQHeader = ({ current = 'home' }) => {
 
 const FOOTER_COLS = [
   { h: 'サービス', l: [['/services/', 'サービス領域'], ['/process/', '発注の流れ・予算感']] },
-  { h: '会社・実績', l: [['/about/', '会社情報'], ['/works/', '実績一覧'], ['/docs/', '作品・事例リスト']] },
+  { h: '会社・実績', l: [['/about/', '会社情報'], ['/works/', '実績一覧'], ['/docs/', '作品・事例リスト'], ['/resources/', '資料']] },
   { h: 'コンタクト', l: [['/contact/', 'お問い合わせ'], ['ext:https://nefry.studio', 'Nefry'], ['ext:https://github.com/hirameq', 'GitHub']] },
 ];
 

@@ -13,7 +13,7 @@ const hwCards = [
 ];
 
 const mobileCards = [
-  { t: 'ハンディターミナル向けアプリ', d: 'バーコード・QRコードを読み取って入出庫や在庫確認を行うアプリ。製造業のポカヨケ機構や物流現場での運用実績があります。' },
+  { t: 'ハンディターミナル向けアプリ', d: 'キーエンスのハンディターミナル（BT-A1000 / BT-A2000 など）で、バーコード・QRコードを読み取って受入・出荷検品や在庫管理を行うアプリ。製造業のポカヨケ機構や物流現場での運用実績があります。', to: '/works/handy/', link: 'ハンディターミナル導入事例を見る →' },
   { t: '決済端末向けアプリ', d: 'クレジットカード・QR決済に対応したPOS／決済端末アプリ。飲食店向けの注文〜会計フローまで実装した経験があります。' },
   { t: '医療・現場業務向けアプリ', d: '点滴機器の操作支援アプリなど、現場のオペレーションに密着した業務アプリを開発。誤操作を防ぐUIと安全性を重視した設計が可能です。' },
   { t: '一般ユーザー向けアプリ', d: 'Androidアプリの開発に対応します。BLE機器と連携するIoT製品向けアプリの実装経験があります（iOS版が必要な場合は、信頼できるパートナー企業と連携してご対応します）。' },
@@ -51,6 +51,7 @@ function Section2col({id, level, levelSub, title, desc, cards, alt}) {
                 <div key={c.t} style={{ padding: 22, border: `1px solid ${HQ.line}`, borderRadius: 8, background: alt ? '#fff' : '#fff' }}>
                   <div style={{ fontSize: 15, fontWeight: 700 }}>{c.t}</div>
                   <p style={{ fontSize: 13, color: HQ.sub, lineHeight: 1.85, marginTop: 8, marginBottom: 0 }}>{c.d}</p>
+                  {c.to && <Link to={c.to} style={{ display: 'inline-block', marginTop: 10, fontSize: 13, color: HQ.blue, fontWeight: 600 }}>{c.link}</Link>}
                 </div>
               ))}
             </div>

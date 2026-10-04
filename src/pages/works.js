@@ -80,9 +80,21 @@ export default function Works() {
             業界・規模・技術スタックの近い事例があるかは、お気軽に <Link to="/contact/" style={{ color: HQ.blue, fontWeight: 600 }}>お問い合わせ</Link> ください。
           </p>
           <p style={{ fontSize: 13, color: HQ.sub, marginTop: 16 }}>
-            個別の作品紹介は <Link to="/docs/" style={{ color: HQ.blue, fontWeight: 600 }}>作品・事例リスト</Link> もご覧いただけます。
+            個別の作品紹介は <Link to="/docs/" style={{ color: HQ.blue, fontWeight: 600 }}>作品・事例リスト</Link>、
+            ハンディターミナルの導入事例は <Link to="/works/handy/" style={{ color: HQ.blue, fontWeight: 600 }}>ハンディターミナル導入事例</Link> もご覧いただけます。
           </p>
         </div>
+      </section>
+
+      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '40px 40px 0' }}>
+        <Link to="/works/handy/" className="hq-card" style={{ display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: 24, alignItems: 'center', padding: '22px 28px', color: 'inherit', borderColor: `${HQ.blue}55` }}>
+          <span className="hq-tag">事例集</span>
+          <div>
+            <div style={{ fontSize: 18, fontWeight: 700 }}>ハンディターミナル導入事例（7社）</div>
+            <div style={{ fontSize: 13, color: HQ.sub, marginTop: 4, lineHeight: 1.8 }}>受入・出荷・検査・在庫の現場での導入事例を、実際の画面とあわせてご紹介しています。重量計とつなげた操作デモ動画もあります。</div>
+          </div>
+          <span style={{ fontSize: 13, color: HQ.blue, fontWeight: 600, whiteSpace: 'nowrap' }}>事例を見る →</span>
+        </Link>
       </section>
 
       <section style={{ borderBottom: `1px solid ${HQ.line}`, background: '#fff', position: 'sticky', top: 73, zIndex: 20 }}>
