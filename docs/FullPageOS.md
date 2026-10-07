@@ -1,5 +1,6 @@
 ---
 id: FullPageOS
+slug: /fullpageos
 title: FullPageOS
 sidebar_label: FullPageOS
 ---

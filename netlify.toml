@@ -5,3 +5,28 @@
 [build.environment]
   NODE_VERSION = "22"
   NPM_VERSION = "10"
+
+# 中身の無かった WIP ページ（ソフト404 で登録されなかった）を一覧へ寄せる。2026-10-07
+[[redirects]]
+  from = "/docs/bath/*"
+  to = "/docs/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/docs/countit/*"
+  to = "/docs/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/docs/mirror/*"
+  to = "/docs/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/docs/chin_up/*"
+  to = "/docs/"
+  status = 301
+  force = true

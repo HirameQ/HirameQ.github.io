@@ -112,6 +112,24 @@ const feedback = [
 
 const jobLabel = Object.fromEntries(jobs.map(j => [j.id, j.t]));
 
+// 検索結果にパンくずとFAQを出してもらうための構造化データ。画面の文言（faqs）から作り、別に書かない。
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'ホーム', item: 'https://hirameq.jp/' },
+      { '@type': 'ListItem', position: 2, name: '実績', item: 'https://hirameq.jp/works/' },
+      { '@type': 'ListItem', position: 3, name: 'ハンディターミナル導入事例', item: 'https://hirameq.jp/works/handy/' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+
 function SectionHead({eyebrow, title, lead}) {
   return (
     <div style={{ marginBottom: 32 }}>
@@ -190,12 +208,13 @@ export default function Handy() {
     border: `1px solid ${active ? HQ.blue : HQ.line}`, background: active ? HQ.blue : '#fff', color: active ? '#fff' : HQ.ink, fontWeight: active ? 600 : 400,
   });
   return (
-    <HQPage current="works">
+    <HQPage current="handy">
       <Head>
         <title>{TITLE}</title>
         <meta name="description" content={DESC}/>
         <meta property="og:title" content={TITLE}/>
         <meta property="og:description" content={DESC}/>
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Head>
 
       <section style={{ background: HQ.bgAlt, borderBottom: `1px solid ${HQ.line}` }}>

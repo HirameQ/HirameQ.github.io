@@ -2,7 +2,6 @@ import React from 'react';
 import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {HQ, HQPage} from '../components/HQShell';
 
 const services = [
@@ -48,17 +47,71 @@ function WorkCard({w}) {
   );
 }
 
+// 検索結果に出る題と説明。「キーエンス ハンディターミナル」で探した人に、ここが開発元だと分かるようにする。
+const TITLE = 'キーエンス ハンディターミナルの業務アプリ開発・IoT機器開発 | 合同会社HirameQ';
+const DESC = 'キーエンスのハンディターミナル（BT-A1000 / BT-A2000）で動く受入・出荷・検査・在庫の業務アプリを、事務所のPCの画面まで一括で開発します。電子基板・ファームウェア・モバイル・Webまで対応。愛知県碧南市の合同会社HirameQ。';
+
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: '合同会社HirameQ',
+  alternateName: 'HirameQ LLC.',
+  url: 'https://hirameq.jp/',
+  logo: 'https://hirameq.jp/img/hirameq_logo.png',
+  address: { '@type': 'PostalAddress', postalCode: '447-0043', addressRegion: '愛知県', addressLocality: '碧南市', streetAddress: '幸町5-8', addressCountry: 'JP' },
+  sameAs: ['https://github.com/hirameq'],
+};
+
+const handyPoints = [
+  { t: '受入・出荷・検査・在庫', d: 'ラベルやかんばんを読むだけで、予定・伝票と照合。違えば赤い画面と音でその場で止めます。' },
+  { t: '事務所のPC1台で動く', d: 'サーバーは要りません。実績は事務所のブラウザで探してCSVで出せます。' },
+  { t: '機器ともつなげる', d: '重量計・ラベルプリンター・デジタルメジャー・棚のLEDと連携した実績があります。' },
+];
+
+function HandyBand() {
+  const img = useBaseUrl('/img/handy-cases/case-c-handy.jpg');
+  return (
+    <section style={{ borderBottom: `1px solid ${HQ.line}` }}>
+      <div className="hq-wrap hq-g2" style={{ paddingTop: 80, paddingBottom: 80, gap: 48, alignItems: 'center' }}>
+        <div>
+          <div className="hq-eyebrow">KEYENCE HANDY TERMINAL</div>
+          <h2 className="hq-h2" style={{ marginTop: 14 }}>キーエンスの<br/>ハンディターミナルで、<br/>現場の業務アプリを作ります。</h2>
+          <p style={{ fontSize: 14, color: HQ.sub, lineHeight: 1.95, marginTop: 16 }}>
+            BT-A1000 / BT-A2000 で動く業務アプリと、事務所のPCの画面までを一括で開発しています。
+            製造業・食品など7社で、目で見比べる・数える・書き写す作業を、読んで照合する形に置き換えてきました。
+          </p>
+          <div style={{ display: 'grid', gap: 14, marginTop: 22 }}>
+            {handyPoints.map(p => (
+              <div key={p.t} style={{ borderLeft: `2px solid ${HQ.blue}`, paddingLeft: 14 }}>
+                <div style={{ fontSize: 15, fontWeight: 700 }}>{p.t}</div>
+                <div style={{ fontSize: 13, color: HQ.sub, lineHeight: 1.8, marginTop: 2 }}>{p.d}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ display: 'flex', gap: 12, marginTop: 28, flexWrap: 'wrap' }}>
+            <Link to="/works/handy/" className="hq-cta" style={{ padding: '12px 22px', textDecoration: 'none', color: '#fff', display: 'inline-block' }}>7社の導入事例と画面を見る →</Link>
+            <Link to="/contact/" className="hq-ghost" style={{ padding: '12px 20px', textDecoration: 'none', display: 'inline-block' }}>ハンディについて相談する</Link>
+          </div>
+        </div>
+        <img src={img} alt="キーエンス ハンディターミナルで動く出荷照合アプリの画面" loading="lazy" style={{ width: '100%', maxWidth: 300, justifySelf: 'center', display: 'block', border: `1px solid ${HQ.line}`, borderRadius: 8 }}/>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
-  const {siteConfig = {}} = useDocusaurusContext();
   return (
     <HQPage current="home">
       <Head>
-        <title>{siteConfig.title}</title>
-        <meta name="description" content={siteConfig.tagline}/>
+        <title>{TITLE}</title>
+        <meta name="description" content={DESC}/>
+        <meta property="og:title" content={TITLE}/>
+        <meta property="og:description" content={DESC}/>
+        <script type="application/ld+json">{JSON.stringify(orgLd)}</script>
       </Head>
 
       {/* HERO */}
-      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '88px 40px 72px', display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 64, alignItems: 'center' }}>
+      <section className="hq-sec hq-hero" style={{ maxWidth: 1180, margin: '0 auto', padding: '88px 40px 72px', display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 64, alignItems: 'center' }}>
         <div className="hq-fade">
           <div className="hq-eyebrow">HARDWARE × MOBILE × WEB</div>
           <h1 className="hq-h1" style={{ marginTop: 24, fontSize: 52 }}>
@@ -79,7 +132,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div style={{ position: 'relative', height: 460 }}>
+        <div className="hq-hero-fig" style={{ position: 'relative', height: 460 }}>
           <svg viewBox="0 0 480 460" style={{ width: '100%', height: '100%' }}>
             <defs>
               <linearGradient id="hq-hero-g" x1="0" y1="0" x2="1" y2="1">
@@ -107,7 +160,7 @@ export default function Home() {
 
       {/* 信頼指標 */}
       <section style={{ borderTop: `1px solid ${HQ.line}`, borderBottom: `1px solid ${HQ.line}`, background: HQ.bgAlt }}>
-        <div style={{ maxWidth: 1180, margin: '0 auto', padding: '28px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32 }}>
+        <div className="hq-band" style={{ maxWidth: 1180, margin: '0 auto', padding: '28px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32 }}>
           <span style={{ fontSize: 12, color: HQ.sub, letterSpacing: 1, whiteSpace: 'nowrap' }}>これまでに支援してきた業界</span>
           <div style={{ display: 'flex', gap: 28, fontSize: 13, color: HQ.subLight, fontWeight: 500, flexWrap: 'wrap' }}>
             <span>製造業</span><span>医療</span><span>建設</span><span>農業・獣害対策</span><span>教育・研究</span><span>太陽光・エネルギー</span><span>小売・POS</span><span>物流・在庫</span>
@@ -115,9 +168,11 @@ export default function Home() {
         </div>
       </section>
 
+      <HandyBand/>
+
       {/* SERVICES */}
-      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '96px 40px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56, gap: 32 }}>
+      <section className="hq-sec" style={{ maxWidth: 1180, margin: '0 auto', padding: '96px 40px' }}>
+        <div className="hq-sec-head" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56, gap: 32 }}>
           <div>
             <div className="hq-eyebrow">SERVICES — 01</div>
             <h2 className="hq-h2" style={{ marginTop: 14 }}>3つの領域を、ひとつのチームで。</h2>
@@ -128,7 +183,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+        <div className="hq-cols" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {services.map(s => (
             <Link to="/services/" key={s.no} className="hq-card" style={{ padding: 32, cursor: 'pointer', display: 'block', textDecoration: 'none', color: 'inherit' }}>
               <div style={{ fontSize: 11, color: HQ.blue, fontWeight: 700, letterSpacing: 2, fontFamily: 'ui-monospace, monospace' }}>{s.no}</div>
@@ -146,8 +201,8 @@ export default function Home() {
 
       {/* WORKS preview */}
       <section style={{ background: HQ.bgAlt, borderTop: `1px solid ${HQ.line}`, borderBottom: `1px solid ${HQ.line}` }}>
-        <div style={{ maxWidth: 1180, margin: '0 auto', padding: '96px 40px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48, gap: 32 }}>
+        <div className="hq-sec" style={{ maxWidth: 1180, margin: '0 auto', padding: '96px 40px' }}>
+          <div className="hq-sec-head" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48, gap: 32 }}>
             <div>
               <div className="hq-eyebrow">WORKS — 02</div>
               <h2 className="hq-h2" style={{ marginTop: 14 }}>これまでの実績、抜粋。</h2>
@@ -155,7 +210,7 @@ export default function Home() {
             <Link to="/works/" style={{ fontSize: 14, color: HQ.blue, fontWeight: 600, cursor: 'pointer' }}>すべての実績を見る →</Link>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+          <div className="hq-cols" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
             {works.map(w => <WorkCard key={w.t} w={w}/>)}
           </div>
 
@@ -169,12 +224,12 @@ export default function Home() {
       </section>
 
       {/* WHY */}
-      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '96px 40px' }}>
+      <section className="hq-sec" style={{ maxWidth: 1180, margin: '0 auto', padding: '96px 40px' }}>
         <div style={{ marginBottom: 56 }}>
           <div className="hq-eyebrow">WHY HIRAMEQ — 03</div>
           <h2 className="hq-h2" style={{ marginTop: 14 }}>選ばれる、3つの理由。</h2>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+        <div className="hq-cols" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
           {reasons.map(c => (
             <div key={c.n} style={{ borderTop: `2px solid ${HQ.blue}`, paddingTop: 22 }}>
               <div style={{ fontSize: 11, color: HQ.blue, fontWeight: 700, letterSpacing: 2, fontFamily: 'ui-monospace, monospace' }}>POINT {c.n}</div>
@@ -188,8 +243,8 @@ export default function Home() {
 
       {/* PROCESS preview */}
       <section style={{ background: HQ.blueDark, color: '#fff' }}>
-        <div style={{ maxWidth: 1180, margin: '0 auto', padding: '96px 40px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56, gap: 32 }}>
+        <div className="hq-sec" style={{ maxWidth: 1180, margin: '0 auto', padding: '96px 40px' }}>
+          <div className="hq-sec-head" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56, gap: 32 }}>
             <div>
               <div className="hq-eyebrow" style={{ color: '#9DB8DA' }}>PROCESS — 04</div>
               <h2 className="hq-h2" style={{ marginTop: 14, color: '#fff' }}>発注の流れ。</h2>
@@ -199,8 +254,8 @@ export default function Home() {
             </div>
             <Link to="/process/" style={{ fontSize: 14, color: '#fff', fontWeight: 600, cursor: 'pointer' }}>詳しい流れを見る →</Link>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 0, position: 'relative' }}>
-            <div style={{ position: 'absolute', top: 22, left: '10%', right: '10%', height: 1, background: 'rgba(255,255,255,0.18)', zIndex: 0 }}/>
+          <div className="hq-cols" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 0, position: 'relative' }}>
+            <div className="hq-steps-line" style={{ position: 'absolute', top: 22, left: '10%', right: '10%', height: 1, background: 'rgba(255,255,255,0.18)', zIndex: 0 }}/>
             {steps.map(p => (
               <div key={p.n} style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
                 <div style={{ width: 44, height: 44, background: HQ.blueDark, border: `2px solid #fff`, borderRadius: 999, margin: '0 auto', display: 'grid', placeItems: 'center', fontSize: 13, fontWeight: 700, color: '#fff', fontFamily: 'ui-monospace, monospace' }}>{p.n}</div>

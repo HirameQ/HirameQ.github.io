@@ -38,7 +38,7 @@ function Section2col({id, level, levelSub, title, desc, cards, alt}) {
   return (
     <section id={id} style={{ scrollMarginTop: 120, background: alt ? HQ.bgAlt : '#fff' }}>
       <div style={{ maxWidth: 1180, margin: '0 auto', padding: '88px 40px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 48, alignItems: 'start' }}>
+        <div className="hq-cols" style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 48, alignItems: 'start' }}>
           <div>
             <div style={{ fontSize: 13, color: HQ.blue, fontWeight: 700, fontFamily: 'ui-monospace, monospace', letterSpacing: 1 }}>{level}</div>
             <div style={{ fontSize: 11, color: HQ.sub, marginTop: 6, fontFamily: 'ui-monospace, monospace', letterSpacing: 1 }}>{levelSub}</div>
@@ -46,7 +46,7 @@ function Section2col({id, level, levelSub, title, desc, cards, alt}) {
           <div>
             <h2 className="hq-h2" style={{ marginBottom: 12 }}>{title}</h2>
             <p style={{ fontSize: 15, color: HQ.sub, lineHeight: 2, marginTop: 0, maxWidth: 720 }}>{desc}</p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16, marginTop: 32 }}>
+            <div className="hq-cols" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16, marginTop: 32 }}>
               {cards.map(c => (
                 <div key={c.t} style={{ padding: 22, border: `1px solid ${HQ.line}`, borderRadius: 8, background: alt ? '#fff' : '#fff' }}>
                   <div style={{ fontSize: 15, fontWeight: 700 }}>{c.t}</div>

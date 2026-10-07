@@ -107,7 +107,7 @@ function ContactForm() {
 
       <label style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         <span style={{ fontSize: 13, fontWeight: 600 }}>ご相談内容のカテゴリ</span>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
+        <div className="hq-cols" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
           {categories.map(c => (
             <label key={c} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', border: `1px solid ${HQ.line}`, borderRadius: 4, fontSize: 13, cursor: 'pointer' }}>
               <input type="checkbox" name="category" value={c} disabled={submitting}/> {c}
@@ -179,7 +179,7 @@ export default function Contact() {
       </section>
 
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: '64px 40px 96px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 56 }}>
+        <div className="hq-cols" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 56 }}>
           <div>
             <div className="hq-eyebrow">FORM</div>
             <h2 className="hq-h2" style={{ marginTop: 14, fontSize: 26 }}>お問い合わせフォーム</h2>

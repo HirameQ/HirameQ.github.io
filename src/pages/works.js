@@ -87,7 +87,7 @@ export default function Works() {
       </section>
 
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: '40px 40px 0' }}>
-        <Link to="/works/handy/" className="hq-card" style={{ display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: 24, alignItems: 'center', padding: '22px 28px', color: 'inherit', borderColor: `${HQ.blue}55` }}>
+        <Link to="/works/handy/" className="hq-card hq-cols" style={{ display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: 24, alignItems: 'center', padding: '22px 28px', color: 'inherit', borderColor: `${HQ.blue}55` }}>
           <span className="hq-tag">事例集</span>
           <div>
             <div style={{ fontSize: 18, fontWeight: 700 }}>ハンディターミナル導入事例（7社）</div>
@@ -97,7 +97,7 @@ export default function Works() {
         </Link>
       </section>
 
-      <section style={{ borderBottom: `1px solid ${HQ.line}`, background: '#fff', position: 'sticky', top: 73, zIndex: 20 }}>
+      <section className="hq-sticky" style={{ borderBottom: `1px solid ${HQ.line}`, background: '#fff', position: 'sticky', top: 73, zIndex: 20 }}>
         <div style={{ maxWidth: 1180, margin: '0 auto', padding: '0 40px', display: 'flex', gap: 4, flexWrap: 'wrap' }}>
           {tabs.map(t => (
             <button key={t.id} onClick={() => setActive(t.id)}
@@ -114,13 +114,13 @@ export default function Works() {
       </section>
 
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: '72px 40px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '160px 1fr', gap: 0 }}>
+        <div className="hq-cols" style={{ display: 'grid', gridTemplateColumns: '160px 1fr', gap: 0 }}>
           {filtered.map((c, i) => (
             <React.Fragment key={c.t}>
               <div style={{ padding: '24px 0', fontFamily: 'ui-monospace, monospace', fontSize: 11, color: HQ.blue, fontWeight: 700, borderTop: `1px solid ${HQ.line}`, letterSpacing: 1 }}>
                 {String(i+1).padStart(3, '0')} <span style={{ color: HQ.sub, fontWeight: 400 }}>/ {indLabel[c.ind]}</span>
               </div>
-              <div style={{ padding: '24px 0 24px 32px', borderTop: `1px solid ${HQ.line}`, borderLeft: `1px solid ${HQ.line}`, position: 'relative', display: 'grid', gridTemplateColumns: c.img ? '1fr 200px' : '1fr', gap: 24, alignItems: 'start' }}>
+              <div className="hq-cols" style={{ padding: '24px 0 24px 32px', borderTop: `1px solid ${HQ.line}`, borderLeft: `1px solid ${HQ.line}`, position: 'relative', display: 'grid', gridTemplateColumns: c.img ? '1fr 200px' : '1fr', gap: 24, alignItems: 'start' }}>
                 <div style={{ position: 'absolute', left: -5, top: 30, width: 9, height: 9, background: HQ.blue, borderRadius: 999, border: `2px solid #fff` }}/>
                 <div>
                   <div style={{ fontSize: 18, fontWeight: 700, color: HQ.ink }}>{c.t}</div>

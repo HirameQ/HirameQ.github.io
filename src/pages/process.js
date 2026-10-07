@@ -69,7 +69,7 @@ export default function Process() {
       </section>
 
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: '64px 40px 24px' }}>
-        <div style={{ background: '#fff', border: `2px solid ${HQ.blue}`, borderRadius: 10, padding: '36px 40px', display: 'grid', gridTemplateColumns: '64px 1fr', gap: 28, alignItems: 'start' }}>
+        <div className="hq-cols" style={{ background: '#fff', border: `2px solid ${HQ.blue}`, borderRadius: 10, padding: '36px 40px', display: 'grid', gridTemplateColumns: '64px 1fr', gap: 28, alignItems: 'start' }}>
           <div style={{ width: 64, height: 64, background: HQ.blueLight, color: HQ.blue, display: 'grid', placeItems: 'center', borderRadius: 999, fontSize: 28, fontWeight: 700, fontFamily: 'ui-monospace, monospace' }}>!</div>
           <div>
             <div className="hq-h3" style={{ fontSize: 22, marginBottom: 8 }}>相見積もり・他社との比較検討も歓迎です。</div>
@@ -86,7 +86,7 @@ export default function Process() {
         <h2 className="hq-h2" style={{ marginTop: 14, fontSize: 30 }}>相談から納品・運用まで</h2>
         <div style={{ marginTop: 48, display: 'flex', flexDirection: 'column', gap: 0 }}>
           {stepDetails.map((s, i) => (
-            <div key={s.n} style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: 32, padding: '36px 0', borderTop: i ? `1px solid ${HQ.line}` : 'none' }}>
+            <div key={s.n} className="hq-cols" style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: 32, padding: '36px 0', borderTop: i ? `1px solid ${HQ.line}` : 'none' }}>
               <div>
                 <div style={{ width: 64, height: 64, background: HQ.blue, color: '#fff', borderRadius: 999, display: 'grid', placeItems: 'center', fontSize: 18, fontWeight: 700, fontFamily: 'ui-monospace, monospace' }}>{s.n}</div>
                 <div style={{ fontSize: 11, color: HQ.blue, marginTop: 14, fontFamily: 'ui-monospace, monospace', letterSpacing: 1 }}>{s.dur}</div>
@@ -111,7 +111,7 @@ export default function Process() {
             実際の金額は要件・規模・期間によって大きく変わりますが、過去案件の傾向から「この規模ならこのくらい」という目安をお伝えします。<br/>
             <b style={{ color: HQ.ink, fontWeight: 600 }}>初回相談・概算見積もりは無料</b>です。予算感が合うかどうかも含めて、まずは気軽にご相談ください。
           </p>
-          <div style={{ marginTop: 40, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+          <div className="hq-cols" style={{ marginTop: 40, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
             {phases.map(p => (
               <div key={p.tag} style={{ padding: 28, border: `1px solid ${HQ.line}`, borderRadius: 8, display: 'flex', flexDirection: 'column' }}>
                 <div style={{ fontSize: 11, color: HQ.blue, fontWeight: 700, fontFamily: 'ui-monospace, monospace', letterSpacing: 1.5 }}>{p.tag}</div>
@@ -143,7 +143,7 @@ export default function Process() {
         <div style={{ maxWidth: 1180, margin: '0 auto', padding: '72px 40px' }}>
           <div className="hq-eyebrow">FAQ</div>
           <h2 className="hq-h2" style={{ marginTop: 14, fontSize: 30 }}>よくあるご質問</h2>
-          <div style={{ marginTop: 36, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <div className="hq-cols" style={{ marginTop: 36, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             {faqs.map(f => (
               <div key={f.q} style={{ padding: 24, background: '#fff', border: `1px solid ${HQ.line}`, borderRadius: 8 }}>
                 <div style={{ display: 'flex', gap: 10 }}>

@@ -59,6 +59,20 @@ export const HQStyles = () => (
       .hq-root .hq-g2, .hq-root .hq-g3 { grid-template-columns: 1fr; }
       .hq-root .hq-h1 { font-size: 32px; }
       .hq-root .hq-h2 { font-size: 26px; }
+      /* ヘッダー：ロゴと問い合わせを1段目、メニューを2段目に置き、入りきらない分は横にずらして見せる */
+      .hq-root .hq-head { flex-wrap: wrap; padding: 10px 16px !important; row-gap: 8px; }
+      .hq-root .hq-nav { order: 3; width: 100%; overflow-x: auto; gap: 18px !important; font-size: 13px !important; white-space: nowrap; padding-bottom: 4px; }
+      /* トップページの固定段組み（インライン指定）をスマホでは縦積みにする */
+      .hq-root .hq-sec { padding: 56px 16px !important; }
+      .hq-root .hq-hero { grid-template-columns: 1fr !important; gap: 24px !important; }
+      .hq-root .hq-hero-fig { height: 240px !important; }
+      .hq-root .hq-hero .hq-h1 { font-size: 34px !important; }
+      .hq-root .hq-cols { grid-template-columns: 1fr !important; }
+      .hq-root .hq-sec-head { flex-direction: column; align-items: flex-start !important; }
+      .hq-root .hq-steps-line { display: none; }
+      .hq-root .hq-sticky { position: static !important; }
+      .hq-root .hq-band { flex-direction: column; align-items: flex-start !important; gap: 12px !important; padding: 20px 16px !important; }
+      .hq-root .hq-foot { grid-template-columns: 1fr 1fr !important; gap: 32px !important; padding: 0 16px !important; }
     }
   `}</style>
 );
@@ -66,6 +80,7 @@ export const HQStyles = () => (
 const NAV_ITEMS = [
   { id: 'services', t: 'サービス', to: '/services/' },
   { id: 'works', t: '実績', to: '/works/' },
+  { id: 'handy', t: 'ハンディターミナル', to: '/works/handy/' },
   { id: 'process', t: '進め方', to: '/process/' },
   { id: 'about', t: '会社情報', to: '/about/' },
   { id: 'docs', t: '作品・事例', to: '/docs/' },
@@ -76,11 +91,11 @@ export const HQHeader = ({ current = 'home' }) => {
   const logoUrl = useBaseUrl('/img/hirameq.png');
   return (
     <header style={{ position: 'sticky', top: 0, background: 'rgba(255,255,255,0.94)', backdropFilter: 'blur(8px)', borderBottom: `1px solid ${HQ.line}`, zIndex: 50 }}>
-      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '18px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div className="hq-head" style={{ maxWidth: 1180, margin: '0 auto', padding: '18px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }}>
           <img src={logoUrl} alt="HirameQ" style={{ height: 36, width: 'auto', display: 'block' }}/>
         </Link>
-        <nav style={{ display: 'flex', gap: 28, fontSize: 14 }}>
+        <nav className="hq-nav" style={{ display: 'flex', gap: 28, fontSize: 14 }}>
           {NAV_ITEMS.map(it => (
             <Link key={it.id} to={it.to}
               style={{ color: current === it.id ? HQ.ink : HQ.sub, fontWeight: current === it.id ? 600 : 400, cursor: 'pointer', transition: 'color 0.2s', position: 'relative', paddingBottom: 2, borderBottom: current === it.id ? `2px solid ${HQ.blue}` : '2px solid transparent' }}>
@@ -97,7 +112,7 @@ export const HQHeader = ({ current = 'home' }) => {
 };
 
 const FOOTER_COLS = [
-  { h: 'サービス', l: [['/services/', 'サービス領域'], ['/process/', '発注の流れ・予算感']] },
+  { h: 'サービス', l: [['/services/', 'サービス領域'], ['/works/handy/', 'ハンディターミナル導入事例'], ['/led-guide/', '棚下LEDガイド'], ['/process/', '発注の流れ・予算感']] },
   { h: '会社・実績', l: [['/about/', '会社情報'], ['/works/', '実績一覧'], ['/docs/', '作品・事例リスト'], ['/resources/', '資料']] },
   { h: 'コンタクト', l: [['/contact/', 'お問い合わせ'], ['ext:https://nefry.studio', 'Nefry'], ['ext:https://github.com/hirameq', 'GitHub']] },
 ];
@@ -106,7 +121,7 @@ export const HQFooter = () => {
   const logoUrl = useBaseUrl('/img/hirameq_logo.png');
   return (
     <footer style={{ background: '#F4F6FA', color: '#5C6B85', padding: '64px 0 36px', marginTop: 0, borderTop: `1px solid #D8DEE8` }}>
-      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '0 40px', display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1fr', gap: 48 }}>
+      <div className="hq-foot" style={{ maxWidth: 1180, margin: '0 auto', padding: '0 40px', display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1fr', gap: 48 }}>
         <div>
           <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
             <img src={logoUrl} alt="HirameQ" style={{ height: 32, width: 'auto', display: 'block' }}/>
